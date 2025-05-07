@@ -1,59 +1,64 @@
 "use client";
-import { useEffect, useState } from "react";
-import { getData } from "@/lib/helper";
+import { useEffect, useRef, useState } from "react";
 import classes from "@/app/page.module.css";
 import { ProductType } from "@/lib/helper";
-import Image from "next/image";
-import { useRef } from "react";
+import { ProductGrid } from "./Product";
+import { ModalPage } from "./Modal";
+import { makeStore } from "@/store/store";
+import { Provider } from "react-redux";
+const store = makeStore()
+
+
 export default function MainPage() {
+  let subtitle;
   const [products, setProducts] = useState<ProductType[]>([]);
-  const descriptionRef = useRef<HTMLParagraphElement>(null);
-  const [fullDescription, setFullDescription] = useState<string>("");
-  const [openedId, setOpenedId] = useState<number | null>(null);
+  const [search, setSearch] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
+  const [modalIsOpened,setModalIsOpened] = useState(false)
+
+
 
   useEffect(() => {
     const getPromiseData = async () => {
-      const product = await getData();
-      setProducts(product);
+      const response = await fetch("/api/data", { method: "GET" });
+      const data = await response.json();
+      setFilteredProducts(data.values);
+      setProducts(data.values);
     };
     getPromiseData();
   }, []);
 
-  const handleClick = (id: number) => {
-    setOpenedId((prev) => (prev === id ? null : id));
+  const filterHandler = () => {
+    const updatedElements = products.filter((item) =>
+      item.category.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredProducts(updatedElements);
   };
+
+  useEffect(() => {
+    filterHandler();
+  }, [search]);
 
   return (
     <>
-      <main className={classes.main}>
+    <Provider store={store}>
+    <main className="main">
+        <div className={classes.korzina}></div>
+        <div className={classes.search_div}>
+          <input
+            type="search"
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search by category"
+          />
+          <button onClick={() => setModalIsOpened(true)}>Корзина</button>
+          <ModalPage modalIsOpened={modalIsOpened} setModalIsOpened={setModalIsOpened}/>
+        </div>
         <div className={classes.grids}>
-          {products.map((item) => (
-            <div className={classes.grid} key={item.id}>
-              <Image
-                src={item.image}
-                alt={item.title}
-                width={200}
-                height={200}
-              />
-              <h2>{item.title}</h2>
-              <p
-                className={classes.description}
-                ref={descriptionRef}
-                onClick={() => handleClick(item.id)}
-              >
-                {openedId === item.id
-                  ? item.description
-                  : item.description.slice(0, 50)}
-              </p>
-              <p className={classes.rating}>{item.rating.rate}</p>
-              <div className={classes.btn_div}>
-              <p className={classes.price}>{item.price}$</p>
-              <button>Купить</button>
-              </div>
-            </div>
-          ))}
+          <ProductGrid products={filteredProducts} />
         </div>
       </main>
+    </Provider>
+      
     </>
   );
 }

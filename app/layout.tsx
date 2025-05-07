@@ -28,6 +28,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
       <SideBar/>
         {children}
+        <div id="modal"></div>
       </body>
     </html>
   );

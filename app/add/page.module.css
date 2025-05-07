@@ -1,0 +1,52 @@
+.form{
+    padding: 3rem;
+}
+.form form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.form form label{
+    text-align: center;
+    margin: 0.5rem 0;
+}
+.form form input{
+    width: 50%;
+    margin: 0 auto;
+    outline: none;
+    border:1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-size: 18px;
+    font-family: inherit;
+}
+.form form input:focus{
+    border-color: #D95030
+}
+.form form button{
+    padding: 0.5rem;
+    font-size: 18px;
+    font-family: inherit;
+    border: none;
+    background: green;
+    color: white;
+    width: 50.5%;
+    margin: 1rem auto;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.error{
+    text-align: center;
+    font-family: inherit;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    color: red;
+}
+.success{
+    text-align: center;
+    font-family: inherit;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    color: green;
+}

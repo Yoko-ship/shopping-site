@@ -26,9 +26,7 @@
   color: white;
   font-size: 20px;
 }
-.main{
-  margin-left: 18%;
-}
+
 .grids{
   display: grid;
   grid-template-columns: repeat(3,1fr);
@@ -36,8 +34,7 @@
   padding-top: 1rem;
 }
 .grids img{
-  width: 25%;
-  height: 25%;
+  width: 100%;
 }
 .grid{
   display: flex;
@@ -45,12 +42,22 @@
   border: 1px solid #ccc;
   padding: 1rem;
   border-radius: 0.5rem;
-  /* text-align: center; */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: normal;
+  max-width: 500px;
+
 }
 .description{
   color: #6d6c6c;
   margin-top: 1rem;
   cursor: pointer;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  max-height: 50px;
+}
+.description.opened{
+  max-height: 500px;
 }
 .price{
   color: black;
@@ -58,15 +65,8 @@
   font-family: inherit;
   margin-top: 1rem;
 }
-.rating{
-  color: #6d6c6c;
-  font-size: 1.1rem;
-}
-.rating::before{
-  content: "★";
-  color: gold;
-  font-size: 20px;
-  margin-right: 1rem;
+.category{
+  margin: 1rem 0;
 }
 
 .btn_div{
@@ -84,3 +84,53 @@
   color: white;
   cursor: pointer;
 }
+.search_div{
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+.search_div input{
+  padding: 0.5rem;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  width: 50%;
+  font-family: inherit;
+  font-size: 1.2rem;
+}
+.search_div input:focus{
+  border-color: rgb(4, 180, 180);
+}
+.korzina{
+  padding: 1rem 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.search_div button{
+  border: none;
+  margin-right: 2rem;
+  padding: 0.5rem;
+  background: none;
+  cursor: pointer;
+}
+.search_div button::before{
+  content: "🛒";
+  margin-right: 0.5rem;
+  font-size: 20px;
+}
+.search_div button:hover{
+  background: #DEE0E5;
+}
+
+.closeBtn{
+  padding: 0.5rem;
+  border: none;
+  margin-bottom: 1rem;
+  background: #3F3F3F;
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+/* .korzina_products{
+
+} */

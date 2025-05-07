@@ -9,7 +9,7 @@ export default function SideBar() {
             <Link href="/">Главное меню</Link>
           </li>
           <li>
-            <Link href="/">test</Link>
+            <Link href="/add">Добавить товар</Link>
           </li>
           <li>
             <Link href="/">test2</Link>
