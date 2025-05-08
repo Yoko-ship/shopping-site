@@ -112,6 +112,14 @@
   padding: 0.5rem;
   background: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.search_div button p{
+  margin-left: 0.3rem;
+  background: #6d6c6c;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
 }
 .search_div button::before{
   content: "🛒";
@@ -122,15 +130,4 @@
   background: #DEE0E5;
 }
 
-.closeBtn{
-  padding: 0.5rem;
-  border: none;
-  margin-bottom: 1rem;
-  background: #3F3F3F;
-  color: white;
-  border-radius: 0.5rem;
-  cursor: pointer;
-}
-/* .korzina_products{
 
-} */

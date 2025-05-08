@@ -3,8 +3,9 @@ import classes from "@/app/page.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import React from "react";
-import { useAppDispatch, useAppSelect } from "@/store/hooks";
+import { useAppDispatch} from "@/store/hooks";
 import { addItems } from "@/store/korzinaStore";
+import axios from "axios";
 export const ProductGrid: React.FC<{ products: ProductType[] }> = ({
   products,
 }) => {
@@ -16,10 +17,12 @@ export const ProductGrid: React.FC<{ products: ProductType[] }> = ({
     setOpenedId((prev) => (prev === id ? null : id));
   };
 
-  const buyHandler = (id:number) =>{
+  const buyHandler = async(id:number) =>{
     const item = products.filter((value) => value.id === id)
     const title = item.map((tit) => tit.title).toString()
     const price = item.map((prc) => prc.price)[0]
+    const response = await axios.post("/api/modal",{title,price,count:1})
+    .then(response => console.log("Вы успешно добавили товар"))
     dispatch(addItems({title:title,price:price,count:1}))
   }
   return (

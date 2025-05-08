@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit"
 import korzinaReducer from "./korzinaStore"
-
+import { modalReducer } from "./korzinaStore"
 export const makeStore = () =>{
     return configureStore({
         reducer:{
-            korzina:korzinaReducer
+            korzina:korzinaReducer,
+            modal:modalReducer
         },
     })
 }

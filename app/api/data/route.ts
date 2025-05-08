@@ -2,7 +2,6 @@ import {pool} from "@/lib/db"
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(){
-    console.log(process.env.NEXT_PUBLIC_HOST)
     const createTable = `
     CREATE TABLE IF NOT EXISTS shopping(
         ID SERIAL PRIMARY KEY,
@@ -33,5 +32,4 @@ export async function POST(req:NextRequest){
     await pool.query(insertInto,[title,description,category,parseInt(price),image])
     return NextResponse.json({success:"Данные успешно добавлены"},{status:201})
 }
-
 

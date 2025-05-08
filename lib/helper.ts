@@ -11,15 +11,7 @@ export interface ProductType{
     title:string
 }
 
-// export const getData = async()=>{
-//     let datas:ProductType[]
-//     await axios.get('https://fakestoreapi.com/products')
-//     .then(response => {
-//         console.log(response.data)
-//         datas = response.data
-//     });
-//     return datas!
-// }
+
 
 export const postData = async(prevValue:any,formData:FormData) =>{
     const title = formData.get("title");

@@ -11,9 +11,6 @@ export default function SideBar() {
           <li>
             <Link href="/add">Добавить товар</Link>
           </li>
-          <li>
-            <Link href="/">test2</Link>
-          </li>
         </ul>
       </nav>
     </header>

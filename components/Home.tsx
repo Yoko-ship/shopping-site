@@ -1,20 +1,19 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect,useState } from "react";
 import classes from "@/app/page.module.css";
 import { ProductType } from "@/lib/helper";
 import { ProductGrid } from "./Product";
 import { ModalPage } from "./Modal";
 import { makeStore } from "@/store/store";
 import { Provider } from "react-redux";
+import KorzinaButton from "./KorzinaMenu";
 const store = makeStore()
 
 
 export default function MainPage() {
-  let subtitle;
   const [products, setProducts] = useState<ProductType[]>([]);
   const [search, setSearch] = useState("");
   const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
-  const [modalIsOpened,setModalIsOpened] = useState(false)
 
 
 
@@ -50,8 +49,8 @@ export default function MainPage() {
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by category"
           />
-          <button onClick={() => setModalIsOpened(true)}>Корзина</button>
-          <ModalPage modalIsOpened={modalIsOpened} setModalIsOpened={setModalIsOpened}/>
+          <KorzinaButton/>
+          <ModalPage/>
         </div>
         <div className={classes.grids}>
           <ProductGrid products={filteredProducts} />

@@ -1,0 +1,42 @@
+.closeBtn{
+    padding: 0.5rem;
+    border: none;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background: none;
+}
+.closeBtn::before{
+    content: "❌";
+    font-size: 1.3rem;
+}
+
+.korzina_products{
+    padding: 1rem;
+    width: 100%;
+}
+.korzina_products > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1rem 0;
+    gap: 1rem;
+}
+
+.korzina_products p{
+    font-size: 1.2rem;
+    font-family: inherit;
+    color: white;
+}
+.title{
+    min-width: 200px;
+}
+.korzina_products div button{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.korzina_products div button::before{
+    content: "🗑️";
+    font-size: 1.3rem;
+}
